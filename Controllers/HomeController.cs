@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using Workers.Models;
 
+// Данный контроллер используется для показа пользователю страниц "Главная", "О нас" и "Наши факультеты"
 namespace Workers.Controllers
 {
     public class HomeController : Controller
@@ -18,7 +19,7 @@ namespace Workers.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult About()
         {
             return View();
         }
