@@ -4,24 +4,16 @@ using Workers.Areas.Identity.Data;
 using Workers.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("AppDatabaseContextConnection") ?? throw new InvalidOperationException("Connection string 'AppDatabaseContextConnection' not found.");
-
-builder.Services.AddDbContext<AppDatabaseContext>(options => options.UseSqlServer(connectionString));
-
-builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<AppDatabaseContext>();
-
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 
 // MySQL Database Connection
-//var getConnectionStringName = builder.Configuration.GetConnectionString("DefaultConnection");
-//builder.Services.AddDbContext<ApplicationDatabaseContext>(options => 
-//    options.UseMySql(getConnectionStringName, ServerVersion.AutoDetect(getConnectionStringName)));
-//
-//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<WorkersContext>();
-//
-//builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<WorkersContext>();
+var getConnectionStringName = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<AppDatabaseContext>(options => 
+    options.UseMySql(getConnectionStringName, ServerVersion.AutoDetect(getConnectionStringName)));
+
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<AppDatabaseContext>();
 
 
 // Add services to the container.

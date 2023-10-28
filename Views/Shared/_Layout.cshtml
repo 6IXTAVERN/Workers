@@ -1,50 +1,58 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    @*Заголовок страницы*@
-    <title>@ViewData["Title"]</title>
-    @*Иконка страницы*@
-    <link rel="icon" href="/favicon.ico" />
-    @*Подключение стилей*@
-    <link rel="stylesheet" href="/lib/bootstrap5.3.0/content/bootstrap.min.css" asp-append-version="true" />
-    <link rel="stylesheet" href="/css/site.css" asp-append-version="true" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  @*Заголовок страницы*@
+  <title>@ViewData["Title"]</title>
+  @*Иконка страницы*@
+  <link rel="icon" href="/favicon.ico" />
+  @*Подключение стилей*@
+  <link rel="stylesheet" href="/lib/bootstrap5.3.0/content/bootstrap.min.css" asp-append-version="true" />
+  <link rel="stylesheet" href="/css/site.css" asp-append-version="true" />
 </head>
 
 <body>
+
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand mb-1" asp-controller="Home" asp-action="Index">
-        <img src="~/content/w.svg" alt="" width="40" height="31" class="d-inline-block align-text-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">
+    <div class="container">
+      
+      <a class="navbar-brand custom-me-10" asp-controller="Home" asp-action="Index">
+        <img src="~/content/w.svg" style="position: relative; top: -2px" alt="" width="40" height="31">
+        <text>Workers</text>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+
+      <div class="collapse navbar-collapse" id="navbarsExample07">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link @(ViewContext.RouteData.Values["Action"]?.ToString() == "Index" ? "active" : "")" style="font-size: 27px" asp-controller="Home" asp-action="Index">Home</a>
+            <a class="nav-link @(ViewContext.RouteData.Values["Action"]?.ToString() == "Index" ? "active" : "")" style="font-size: 20px" asp-controller="Home" asp-action="Index">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link @(ViewContext.RouteData.Values["Action"]?.ToString() == "About" ? "active" : "")" style="font-size: 27px" asp-controller="Home" asp-action="About">About</a>
+            <a class="nav-link @(ViewContext.RouteData.Values["Action"]?.ToString() == "About" ? "active" : "")" style="font-size: 20px" asp-controller="Home" asp-action="About">About</a>
           </li>
-        </ul>
-        <ul class="navbar-nav">
           <li class="nav-item">
-            <partial name="_LoginPartial"/>
+            <a class="nav-link @(ViewContext.RouteData.Values["Action"]?.ToString() == "Categories" ? "active" : "")" style="font-size: 20px" asp-controller="Home" asp-action="Categories">Categories</a>
           </li>
         </ul>
+
+        <form>
+          <partial name="_LoginPartial"/>
+        </form>
       </div>
+
     </div>
   </nav>
 </header>
 
-
 @RenderBody()
 @*Интересная заметка об ошибке: если в пути не указать ~/ то toggle-collapsed будет работать только на странице Home*@
 <script src="~/lib/bootstrap5.3.0/scripts/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

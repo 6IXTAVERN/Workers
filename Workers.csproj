@@ -13,8 +13,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.12" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.12" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.12">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.13">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -62,6 +61,47 @@
     <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ValidationScriptsPartial.cshtml" />
     <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ViewImports.cshtml" />
     <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ViewStart.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\AccessDenied.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\ConfirmEmail.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\ConfirmEmailChange.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\ExternalLogin.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\ForgotPassword.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\ForgotPasswordConfirmation.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\Lockout.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\LoginWith2fa.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\LoginWithRecoveryCode.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\Logout.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\Manage\ChangePassword.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\Manage\DeletePersonalData.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\Manage\Disable2fa.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\Manage\DownloadPersonalData.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\Manage\Email.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\Manage\EnableAuthenticator.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\Manage\ExternalLogins.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\Manage\GenerateRecoveryCodes.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\Manage\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\Manage\PersonalData.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\Manage\ResetAuthenticator.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\Manage\SetPassword.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\Manage\ShowRecoveryCodes.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\Manage\TwoFactorAuthentication.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\Manage\_Layout.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\Manage\_ManageNav.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\Manage\_StatusMessage.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\Manage\_ViewImports.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\Register.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\RegisterConfirmation.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\ResendEmailConfirmation.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\ResetPassword.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\ResetPasswordConfirmation.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\_StatusMessage.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Account\_ViewImports.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\Error.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\_AuthLayout.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\_ValidationScriptsPartial.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\_ViewImports.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Authorization\Pages\_ViewStart.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\_Layout.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -71,6 +111,23 @@
   <ItemGroup>
     <None Remove="Properties\serviceDependencies.json" />
     <None Remove="Properties\serviceDependencies.local.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\ChangePassword.cshtml" />
+    <UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\DeletePersonalData.cshtml" />
+    <UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\Disable2fa.cshtml" />
+    <UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\DownloadPersonalData.cshtml" />
+    <UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\Email.cshtml" />
+    <UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\EnableAuthenticator.cshtml" />
+    <UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\ExternalLogins.cshtml" />
+    <UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\GenerateRecoveryCodes.cshtml" />
+    <UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\Index.cshtml" />
+    <UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\PersonalData.cshtml" />
+    <UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\ResetAuthenticator.cshtml" />
+    <UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\SetPassword.cshtml" />
+    <UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\ShowRecoveryCodes.cshtml" />
+    <UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\TwoFactorAuthentication.cshtml" />
   </ItemGroup>
 
 </Project>

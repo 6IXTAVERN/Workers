@@ -1,27 +1,25 @@
-@{
-    Layout = "/Views/Shared/_Layout.cshtml";
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport2" content="width=device-width, initial-scale=1.0" />
+    @*Заголовок страницы*@
+    <title>@ViewData["Title"]</title>
+    @*Иконка страницы*@
+    <link rel="icon" href="/favicon.ico" />
+    @*Подключение стилей*@
+    <link rel="stylesheet" href="/lib/bootstrap5.3.0/content/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="/css/site.css" asp-append-version="true" />
+</head>
 
-<div class="row justify-content-center">
-    <div class="col-5 m-5">
-        <div class="card login-logout-card">
-            <div class="card-header">
-                <ul class="nav nav-tabs card-header-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Identity/Account/Login">
-                            Log In
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Identity/Account/Register">
-                            Register
-                        </a>
-                    </li>
-                </ul>
-            </div>
+<body>
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 90vh; overflow: hidden;">
+    <div class="row">
+        <div class="card">
             <div class="card-body">
                 <div class="row justify-content-center">
-                    <div class="col-10 my-4">
+                    <div class="col-12 my-0 mx-auto">
                         @RenderBody()
                     </div>
                 </div>
@@ -30,17 +28,9 @@
     </div>
 </div>
 
-@section Scripts{
-    @await RenderSectionAsync("Scripts", required: false)
-    <script>
-        $(function () {
-            const currentPage = location.pathname;
-            $('.nav-tabs li a').each(function () {
-                const $this = $(this);
-                if (currentPage.toLowerCase().indexOf($this.attr('href').toLowerCase()) !== -1) {
-                    $this.addClass('active');
-                }
-            })
-        })
-    </script>
-}
+
+<script src="~/lib/bootstrap5.3.0/scripts/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
