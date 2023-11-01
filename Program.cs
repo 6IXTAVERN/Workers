@@ -1,20 +1,17 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Workers.Areas.Identity.Data;
 using Workers.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-
 // MySQL Database Connection
 var getConnectionStringName = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<AppDatabaseContext>(options => 
+builder.Services.AddDbContext<ApplicationDbContext>(options => 
     options.UseMySql(getConnectionStringName, ServerVersion.AutoDetect(getConnectionStringName)));
 
-builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<AppDatabaseContext>();
-
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();

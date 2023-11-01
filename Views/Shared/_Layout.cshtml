@@ -39,10 +39,9 @@
             <a class="nav-link @(ViewContext.RouteData.Values["Action"]?.ToString() == "Categories" ? "active" : "")" style="font-size: 20px" asp-controller="Home" asp-action="Categories">Categories</a>
           </li>
         </ul>
-
-        <form>
+        
           <partial name="_LoginPartial"/>
-        </form>
+        
       </div>
 
     </div>
