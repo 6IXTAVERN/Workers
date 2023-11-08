@@ -1,8 +1,71 @@
-* {
-  font-family: "JetBrains Mono", sans-serif;
+header {
+  font-family: 'JetBrains Mono', monospace;
 }
 
 body {
   overflow-x: hidden;
   background: #ffc400;
 }
+
+/*для отступа от Workers*/
+.custom-me-10 {
+  margin-right: 10rem;
+}
+
+/*для отступа у авторизации*/
+.custom-mt-10 {
+  margin-top: 10rem;
+}
+
+/*для авторизации*/
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/*tab navigation*/
+.login-logout-card .card-header {
+  padding: 0px 0px 12px 0px;
+}
+
+.login-logout-card ul.nav-tabs {
+  margin: 0px 0px -12px 0px;
+}
+
+.login-logout-card li.nav-item {
+  width: 50%;
+}
+
+.login-logout-card a.nav-link {
+  font-size: 1rem;
+  color: #495057;
+  text-align: center;
+  padding: 1rem;
+}
+
+.login-logout-card .card-body {
+  padding: 10px 20px;
+}
+
