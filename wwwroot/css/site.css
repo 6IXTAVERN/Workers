@@ -1,4 +1,6 @@
-
+header {
+  font-family: 'JetBrains Mono', monospace;
+}
 
 body {
   overflow-x: hidden;
