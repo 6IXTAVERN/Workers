@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Workers._data;
 using Workers.Data;
 
 var builder = WebApplication.CreateBuilder(args);
