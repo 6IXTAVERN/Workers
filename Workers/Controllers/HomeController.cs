@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Microsoft.Extensions.Logging;
 using Workers.Models;
 
 // Данный контроллер используется для показа пользователю страниц "Главная", "О нас" и "Наши факультеты"
