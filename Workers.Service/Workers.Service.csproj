@@ -8,8 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Implementations\" />
-      <Folder Include="Interfaces\" />
+      <ProjectReference Include="..\Workers.DataLayer\Workers.DataLayer.csproj" />
+      <ProjectReference Include="..\Workers.Domain\Workers.Domain.csproj" />
     </ItemGroup>
 
 </Project>

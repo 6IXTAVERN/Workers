@@ -2,8 +2,10 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Workers.Domain.Models;
 
-public class User // заимплементить насследование от IdentityUser
+public class User : IdentityUser
 {
-    public string NickName { get; set; }
-    public Resume UserResume { get; set; }
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
+    public string? MiddleName { get; set; }
+    //public Resume UserResume { get; set; }
 }

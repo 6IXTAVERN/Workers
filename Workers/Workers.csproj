@@ -22,5 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Workers.DataLayer\Workers.DataLayer.csproj" />
+    <ProjectReference Include="..\Workers.Service\Workers.Service.csproj" />
   </ItemGroup>
 </Project>

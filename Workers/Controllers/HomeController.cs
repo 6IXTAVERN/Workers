@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Microsoft.Extensions.Logging;
-using Workers.Models;
 
 // Данный контроллер используется для показа пользователю страниц "Главная", "О нас" и "Наши факультеты"
 namespace Workers.Controllers
@@ -28,12 +27,6 @@ namespace Workers.Controllers
         public IActionResult Categories()
         {
             return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

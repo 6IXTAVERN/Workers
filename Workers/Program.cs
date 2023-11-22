@@ -2,17 +2,31 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Workers.DataLayer;
+using Workers.DataLayer.Interfaces;
+using Workers.DataLayer.Repositories;
 using Workers.Domain.Models;
+using Workers.Services.Implementations;
+using Workers.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 // MySQL Database Connection
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseInMemoryDatabase("IdentityDemo"));
+var getConnectionStringName = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ApplicationDbContext>(options => 
+   options.UseMySql(getConnectionStringName, ServerVersion.AutoDetect(getConnectionStringName), b => b.MigrationsAssembly("Workers")));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
+
+// регистрация интерфейсов
+builder.Services.AddScoped<IBaseRepository<Resume>, ResumeRepository>();
+builder.Services.AddScoped<IBaseRepository<User>, UserRepository>();
+
+// регистрация сервисов
+builder.Services.AddScoped<IResumeService, ResumeService>();
+builder.Services.AddScoped<IUserService, UserService>();
+
 
 // Add services to the container.
 builder.Services.AddRazorPages();
