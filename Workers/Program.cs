@@ -15,12 +15,12 @@ builder.Services.AddControllersWithViews();
 // MySQL Database Connection
 var getConnectionStringName = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options => 
-   options.UseMySql(getConnectionStringName, ServerVersion.AutoDetect(getConnectionStringName), b => b.MigrationsAssembly("Workers")));
+   options.UseMySql(getConnectionStringName, ServerVersion.AutoDetect(getConnectionStringName), b => b.MigrationsAssembly("Workers.DataLayer")));
 
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
 
 // регистрация интерфейсов
-builder.Services.AddScoped<IBaseRepository<Resume>, ResumeRepository>();
+builder.Services.AddScoped<IResumeRepository, ResumeRepository>();
 builder.Services.AddScoped<IBaseRepository<User>, UserRepository>();
 
 // регистрация сервисов
