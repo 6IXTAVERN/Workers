@@ -1,0 +1,82 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<body>
+<main>
+    <div class="container">
+        <div class="row col-12">
+            <h1>Панель управления</h1>
+            <hr/>
+            <div class="col-md-3">
+                <div class="row">
+                    <a href="#" class="nav-link" id="link1">Пункт 1</a>
+                </div>
+                <div class="row">
+                    <a href="#" class="nav-link" id="link2">Пункт 2</a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+
+
+@*
+<div class="container d-flex justify-content-center align-items-center" style="height: 90vh; overflow: hidden;">
+    <div class="row col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row justify-content-center">
+                    <div class="col-12 my-0 mx-auto">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+*@
+
+<h1>Панель управления</h1>
+
+<div>
+    <hr/>
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_ManageNav" />
+        </div>
+        <div class="col-md-9">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}
+
+<script>
+    var link1 = document.getElementById('link1');
+    var link2 = document.getElementById('link2');
+
+    link1.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (!link1.classList.contains('active')) {
+            link1.classList.add('active');
+            link2.classList.remove('active');
+        }
+    });
+
+    link2.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (!link2.classList.contains('active')) {
+            link2.classList.add('active');
+            link1.classList.remove('active');
+        }
+    });
+</script>
+

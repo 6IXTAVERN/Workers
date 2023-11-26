@@ -4,11 +4,6 @@ namespace Workers.Domain.ViewModels.Resume;
 
 public class CreateResumeViewModel
 {
-    public long Id { get; set; }
-
-    [Display(Name = "Дата создания")]
-    public DateTime DateCreated { get; set; }
-        
     [Display(Name = "Имя")]
     [Required(ErrorMessage = "Укажите имя")]
     [MaxLength(20, ErrorMessage = "Имя должно иметь длину меньше 20 символов")]
@@ -24,6 +19,4 @@ public class CreateResumeViewModel
     [MaxLength(50, ErrorMessage = "Отчество должно иметь длину меньше 50 символов")]
     [MinLength(2, ErrorMessage = "Отчество должно иметь длину больше 2 символов")]
     public string MiddleName { get; set; }
-        
-    public string IdUser { get; set; }
 }

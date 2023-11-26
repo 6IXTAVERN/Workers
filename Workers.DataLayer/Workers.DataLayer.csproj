@@ -14,10 +14,28 @@
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.10" />
+      <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Workers.Domain\Workers.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetDbContext)' == 'Workers.DataLayer.ApplicationDbContext'">
+        <Compile Update="Migrations\**\*.cs">
+            <DesignTime>True</DesignTime>
+        </Compile>
+        <EmbeddedResource Update="Migrations\**\*.resx">
+            <DesignTime>True</DesignTime>
+        </EmbeddedResource>
+        <None Update="Migrations\**\*.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <Generator>MSBuild:Compile</Generator>
+            <DependentUpon>$(Compile)</DependentUpon>
+        </None>
+        <Compile Update="ApplicationDbContext.cs">
+            <DesignTime>True</DesignTime>
+        </Compile>
     </ItemGroup>
 
 </Project>

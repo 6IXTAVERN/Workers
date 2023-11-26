@@ -1,11 +1,25 @@
 header {
   font-family: 'JetBrains Mono', monospace;
+  background: black;
+  color: black;
 }
 
 body {
   overflow-x: hidden;
-  background: #ffc400;
+  color: whitesmoke;
+  background: #0b0b0b;
 }
+
+.nav-link.active {
+  background-color: #0a53be; /* Новый цвет фона активной ссылки */
+}
+
+
+
+
+
+
+
 
 /*для отступа от Workers*/
 .custom-me-10 {

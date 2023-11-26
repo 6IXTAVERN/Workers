@@ -1,3 +1,5 @@
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Workers.DataLayer.Interfaces;
 using Workers.Domain.Enum;
@@ -11,25 +13,24 @@ namespace Workers.Services.Implementations;
 
 public class ResumeService : IResumeService
 {
-    private readonly IBaseRepository<User> _userRepository;
-    private readonly IBaseRepository<Resume> _resumeRepository;
+    private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly IResumeRepository _resumeRepository;
     
-    public ResumeService(IBaseRepository<User> userRepository, IBaseRepository<Resume> resumeRepository)
+    public ResumeService(IResumeRepository resumeRepository, IHttpContextAccessor httpContextAccessor)
     {
-        _userRepository = userRepository;
         _resumeRepository = resumeRepository;
+        _httpContextAccessor = httpContextAccessor;
     }
 
     public async Task<IBaseResponse<Resume>> Create(CreateResumeViewModel model)
     {
         try
         {
-            //[TODO] заменить на реализацию identity
-            var user = await _userRepository.GetAll()
-                .FirstOrDefaultAsync(x => x.Id == model.IdUser);
+            var userId = _httpContextAccessor.HttpContext.User
+                .FindFirst(ClaimTypes.NameIdentifier)?.Value;
             
             
-            if (user == null)
+            if (userId == null)
             {
                 return new BaseResponse<Resume>()
                 {
@@ -44,6 +45,7 @@ public class ResumeService : IResumeService
                 LastName = model.LastName,
                 MiddleName = model.MiddleName,
                 DateCreated = DateTime.Now,
+                UserId = userId
             };
      
             await _resumeRepository.Create(resume);
@@ -104,14 +106,14 @@ public class ResumeService : IResumeService
             var resumes = _resumeRepository.GetAll().ToList();
             if (!resumes.Any())
             {
-                return new BaseResponse<List<Resume>>()
+                return new BaseResponse<List<Resume>>
                 {
                     Description = "Найдено 0 элементов",
                     StatusCode = StatusCode.Ok
                 };
             }
                 
-            return new BaseResponse<List<Resume>>()
+            return new BaseResponse<List<Resume>>
             {
                 Data = resumes,
                 StatusCode = StatusCode.Ok
@@ -119,9 +121,42 @@ public class ResumeService : IResumeService
         }
         catch (Exception ex)
         {
-            return new BaseResponse<List<Resume>>()
+            return new BaseResponse<List<Resume>>
             {
                 Description = $"[GetResumes] : {ex.Message}",
+                StatusCode = StatusCode.InternalServerError
+            };
+        }
+    }
+
+    public IBaseResponse<Resume> GetActiveUserResume()
+    {
+        var userId = _httpContextAccessor.HttpContext.User
+            .FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        
+        try
+        {
+            var resume = _resumeRepository.GetResumeByUserId(userId);
+            if (resume == null)
+            {
+                return new BaseResponse<Resume>
+                {
+                    Description = "Резюме не найдено",
+                    StatusCode = StatusCode.Ok
+                };
+            }
+                
+            return new BaseResponse<Resume>
+            {
+                Data = resume,
+                StatusCode = StatusCode.Ok
+            };
+        }
+        catch (Exception ex)
+        {
+            return new BaseResponse<Resume>
+            {
+                Description = $"[GetResumeByUserId] : {ex.Message}",
                 StatusCode = StatusCode.InternalServerError
             };
         }

@@ -1,3 +1,68 @@
 @model Workers.Domain.ViewModels.Resume.CreateResumeViewModel
 
-privet
+@{
+    ViewData["Title"] = "Создание резюме";
+}
+
+@{
+    Layout = "_ProfileLayout";
+}
+
+<div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<body>
+    <div class="container">
+        <h1 class="text-center">Resume Builder</h1>
+        <form asp-controller="Resume" asp-action="Create">
+            <div class="mb-3">
+                <label asp-for="@Model.FirstName" class="col-form-label text-black-50"></label>
+                <input type="text" class="form-control" asp-for="@Model.FirstName">
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="@Model.MiddleName" class="col-form-label text-black-50"></label>
+                <input type="text" class="form-control" asp-for="@Model.MiddleName"></input>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="@Model.LastName" class="col-form-label text-black-50"></label>
+                <input type="text" class="form-control" asp-for="@Model.LastName"></input>
+            </div>
+            @*
+            <div class="mb-3">
+                <label for="education" class="form-label">Education</label>
+                <textarea class="form-control" id="education" rows="3" placeholder="Enter your educational background"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="experience" class="form-label">Experience</label>
+                <textarea class="form-control" id="experience" rows="3" placeholder="Enter your work experience"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="skills" class="form-label">Skills</label>
+                <textarea class="form-control" id="skills" rows="3" placeholder="Enter your skills"></textarea>
+            </div>
+            *@
+            <button type="submit" class="btn btn-primary">Create Resume</button>
+        </form>
+    </div>
+</body>
+

@@ -5,59 +5,45 @@
 <link href="css/carousel.css" rel="stylesheet">
 
 <main>
-  
-  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-
-        <div class="container">
-          <div class="carousel-caption text-start">
-            <h1>Example headline.</h1>
-            <p>Some representative placeholder content for the first slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" asp-area="Identity" asp-page="/Account/Register">Sign up</a></p>
-          </div>
+        <img src="/content/carousel1.jpg"  class="d-block w-100 img-fluid" alt="Image 1">
+        <div class="carousel-caption">
+          <h5>Image 1 Title</h5>
+          <p>Image 1 description</p>
         </div>
       </div>
       <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Another example headline.</h1>
-            <p>Some representative placeholder content for the second slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="https://github.com/6IXTAVERN/Workers">Button</a></p>
-          </div>
+        <img src="/content/carousel2.jpg" class="d-block w-100 " alt="Image 2">
+        <div class="carousel-caption">
+          <h5>Image 2 Title</h5>
+          <p>Image 2 description</p>
         </div>
       </div>
       <div class="carousel-item">
-        <svg class="bd-placeholder-img ba" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 100 100">
-          <image xlink:href="content/git.svg" x="0" y="0" width="100" height="100" />
-        </svg>
-        
-        <div class="container">
-          <div class="carousel-caption text-end">
-            <h1>One more for good measure.</h1>
-            <p>Some representative placeholder content for the third slide of this carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">GitHub</a></p>
-          </div>
+        <img src="image3.jpg" class="d-block w-100" alt="Image 3">
+        <div class="carousel-caption">
+          <h5>Image 3 Title</h5>
+          <p>Image 3 description</p>
         </div>
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
   </div>
+
 
 
   <!-- Marketing messaging and featurettes
@@ -147,5 +133,42 @@
   </footer>
 </main>
 
+<script>
+  // Получаем элемент карусели
+  const carousel = document.getElementById('carouselExampleIndicators');
+
+  // Получаем все кнопки-индикаторы
+  const carouselIndicators = carousel.querySelectorAll('.carousel-indicators button');
+
+  // Обрабатываем клик по кнопкам-индикаторам
+  carouselIndicators.forEach((indicator) => {
+    indicator.addEventListener('click', () => {
+      // Проверяем, является ли индикатор активным
+      const isActive = indicator.getAttribute('aria-current') === 'true';
+
+      // Если индикатор уже активен, не делаем ничего
+      if (isActive) {
+        return;
+      }
+
+      // Получаем текущий элемент-слайд
+      const currentSlide = carousel.querySelector('.carousel-item.active');
+
+      // Удаляем класс активности у текущего элемента-слайда и его индикатора
+      currentSlide.classList.remove('active');
+      indicator.setAttribute('aria-current', 'false');
+
+      // Находим целевой индекс по атрибуту data-bs-slide-to индикатора
+      const targetIndex = parseInt(indicator.getAttribute('data-bs-slide-to'), 10);
+
+      // Получаем элемент-слайд, соответствующий целевому индексу
+      const targetSlide = carousel.querySelector(`.carousel-item[data-bs-slide-to="${targetIndex}"]`);
+
+      // Добавляем класс активности к элементу-слайду и его индикатору
+      targetSlide.classList.add('active');
+      indicator.setAttribute('aria-current', 'true');
+    });
+  });
+</script>
 
 

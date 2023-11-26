@@ -30,13 +30,25 @@ public class ResumeController : Controller
 
         var resumeModel = new CreateResumeViewModel()
         {
-            Id = id,
             FirstName = user.FirstName,
             LastName = user.LastName,
             MiddleName = user.MiddleName
         };
 
         return View(resumeModel);
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> Create(CreateResumeViewModel model)
+    {
+        if (!ModelState.IsValid) return StatusCode(StatusCodes.Status500InternalServerError);
+        
+        var response = await _resumeService.Create(model);
+        if (response.StatusCode == Domain.Enum.StatusCode.Ok)
+        {
+            return Json(new { description = response.Description });
+        }
+        return StatusCode(StatusCodes.Status500InternalServerError);
     }
 
     public async Task<IActionResult> Delete(int id)
@@ -51,6 +63,7 @@ public class ResumeController : Controller
     }
 
     [HttpGet]
+    [Authorize]
     public IActionResult GetResumes()
     {
         var response = _resumeService.GetResumes();
@@ -59,6 +72,26 @@ public class ResumeController : Controller
             return View(response.Data);
         }
 
+        return View("Error", $"{response.Description}");
+    }
+
+    [Authorize]
+    public IActionResult GetActiveUserResume()
+    {
+        var response = _resumeService.GetActiveUserResume();
+        
+        var resumeModel = new ResumeViewModel()
+        {
+            FirstName = response.Data.FirstName,
+            LastName = response.Data.LastName,
+            MiddleName = response.Data.MiddleName
+        };
+        
+        if (response.StatusCode == Domain.Enum.StatusCode.Ok)
+        {
+            return View(resumeModel);
+        }
+        
         return View("Error", $"{response.Description}");
     }
 }
