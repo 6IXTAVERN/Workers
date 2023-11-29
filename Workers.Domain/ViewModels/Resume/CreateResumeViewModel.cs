@@ -1,0 +1,24 @@
+using System.ComponentModel.DataAnnotations;
+
+namespace Workers.Domain.ViewModels.Resume;
+
+public class CreateResumeViewModel
+{
+    [Display(Name = "Имя")]
+    [Required(ErrorMessage = "Укажите имя")]
+    [MaxLength(20, ErrorMessage = "Имя должно иметь длину меньше 20 символов")]
+    [MinLength(3, ErrorMessage = "Имя должно иметь длину больше 3 символов")]
+    public string FirstName { get; set; }
+        
+    [Display(Name = "Фамилия")]
+    [Required(ErrorMessage = "Укажите имя")]
+    [MaxLength(50, ErrorMessage = "Фамилия должно иметь длину меньше 50 символов")]
+    [MinLength(2, ErrorMessage = "Фамилия должно иметь длину больше 2 символов")]
+    public string LastName { get; set; }
+        
+    [Display(Name = "Отчество")]
+    [Required(ErrorMessage = "Укажите имя")]
+    [MaxLength(50, ErrorMessage = "Отчество должно иметь длину меньше 50 символов")]
+    [MinLength(2, ErrorMessage = "Отчество должно иметь длину больше 2 символов")]
+    public string MiddleName { get; set; }
+}

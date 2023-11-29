@@ -9,14 +9,28 @@
     }
 }
 
-<h1>Manage your account</h1>
+@*
+<h1>Панель управления</h1>
 
 <div>
-    <h2>Change your account settings</h2>
-    <hr />
+    <hr/>
     <div class="row">
         <div class="col-md-3">
             <partial name="_ManageNav" />
+        </div>
+        <div class="col-md-9">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+*@
+
+<div class="container top-50 mt-5">
+    <div class="row col-12">
+        <h1>Панель управления</h1>
+        <hr/>
+        <div class="col-md-3">
+            <partial name="_ManageNav"/>
         </div>
         <div class="col-md-9">
             @RenderBody()

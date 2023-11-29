@@ -1,0 +1,14 @@
+@model System.Collections.Generic.List<Workers.Domain.Models.Resume>
+
+@{
+    Layout = null;
+}
+
+@foreach (var name in Model)
+{
+    <tr>
+        <td>@name.FirstName</td>
+        <td>@name.MiddleName</td>
+        <td>@name.LastName</td>
+    </tr>
+}
