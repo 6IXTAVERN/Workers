@@ -7,21 +7,27 @@
   <title>@ViewData["Title"]</title>
   @*Иконка страницы*@
   <link rel="icon" href="/favicon.ico" />
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.min.js"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
   @*Подключение стилей*@
-  <link rel="stylesheet" href="/lib/bootstrap5.3.0/content/bootstrap.min.css" asp-append-version="true" />
-  <link rel="stylesheet" href="/css/site.css" asp-append-version="true" />
-  <link rel="stylesheet" href="/js/site.js" asp-append-version="true" />
+  <link rel="stylesheet" href="~/lib/bootstrap5.3.0/content/bootstrap.min.css" asp-append-version="true" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" asp-append-version="true" />
+  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+  <link rel="stylesheet" href="~/js/site.js" asp-append-version="true" />
+  @*Интересная заметка об ошибке: если в пути не указать ~/ то toggle-collapsed будет работать только на странице Home*@
+  <script src="~/lib/bootstrap5.3.0/scripts/bootstrap.bundle.min.js"></script>
+  <script src="~/js/site.js" asp-append-version="true"></script>
 </head>
 
 <body>
 
 <header class="sticky-top">
   <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Eighth navbar example">
-    <div class="container">
+    <div class="container" style="max-width: 1600px">
       
       <a class="navbar-brand custom-me-10" asp-controller="Home" asp-action="Index">
-        <img src="~/content/w.svg" style="position: relative; top: -2px" alt="" width="40" height="31">
-        <text>Workers</text>
+        <img src="~/content/w.svg" style="position: relative; top: -2px" alt="" width="40" height="31"></img>
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,30 +36,25 @@
 
       <div class="collapse navbar-collapse" id="navbarsExample07">
         <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link @(ViewContext.RouteData.Values["Action"]?.ToString() == "Index" ? "active" : "")" style="font-size: 20px" asp-controller="Home" asp-action="Index">Home</a>
+          <li class="nav-item me-4">
+            <a class="nav-link @(ViewContext.RouteData.Values["Action"]?.ToString() == "Index" ? "active" : "")" style="font-size: 20px" asp-controller="Home" asp-action="Index">Главная</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item me-4">
             <a class="nav-link @(ViewContext.RouteData.Values["Action"]?.ToString() == "About" ? "active" : "")" style="font-size: 20px" asp-controller="Home" asp-action="About">About</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item me-4">
             <a class="nav-link @(ViewContext.RouteData.Values["Action"]?.ToString() == "Categories" ? "active" : "")" style="font-size: 20px" asp-controller="Home" asp-action="Categories">Categories</a>
           </li>
         </ul>
         
         <partial name="_LoginPartial"/>
-        
       </div>
-
     </div>
   </nav>
 </header>
 
 @RenderBody()
 
-@*Интересная заметка об ошибке: если в пути не указать ~/ то toggle-collapsed будет работать только на странице Home*@
-<script src="~/lib/bootstrap5.3.0/scripts/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

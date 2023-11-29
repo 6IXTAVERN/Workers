@@ -1,48 +1,115 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+﻿header {
+  font-family: 'JetBrains Mono', monospace;
+  background: black;
+  color: black;
 }
 
-a {
-  color: #0077cc;
+body {
+  overflow-x: hidden;
+  color: whitesmoke;
+  background: #0b0b0b;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+
+
+
+
+
+/*для отступа от Workers*/
+.custom-me-10 {
+  margin-right: 20rem;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+/*для отступа у авторизации*/
+.custom-mt-10 {
+  margin-top: 10rem;
 }
 
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
+/*для авторизации*/
+.form-signin {
   width: 100%;
-  white-space: nowrap;
-  line-height: 60px;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
 }
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/*tab navigation*/
+.login-logout-card .card-header {
+  padding: 0px 0px 12px 0px;
+}
+
+.login-logout-card ul.nav-tabs {
+  margin: 0px 0px -12px 0px;
+}
+
+.login-logout-card li.nav-item {
+  width: 50%;
+}
+
+.login-logout-card a.nav-link {
+  font-size: 1rem;
+  color: #495057;
+  text-align: center;
+  padding: 1rem;
+}
+
+.login-logout-card .card-body {
+  padding: 10px 20px;
+}
+
+
+/*
+.header {
+  backdrop-filter: blur(25px);
+  background: rgba(0,0,0,.85);
+  border-bottom: 1px solid #282828;
+  color: #fff;
+  display: flex;
+  height: 80px;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+}
+*/
+
+.header-indent {
+  height: 80px;
+}
+
+.header-logo {
+  align-items: center;
+  display: flex;
+  flex: 1; {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0%;
+}
+}
+
+
+li {
+  list-style-type: none;
+}
+

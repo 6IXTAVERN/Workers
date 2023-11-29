@@ -9,7 +9,7 @@
     }
 }
 
-
+@*
 <h1>Панель управления</h1>
 
 <div>
@@ -17,6 +17,20 @@
     <div class="row">
         <div class="col-md-3">
             <partial name="_ManageNav" />
+        </div>
+        <div class="col-md-9">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+*@
+
+<div class="container top-50 mt-5">
+    <div class="row col-12">
+        <h1>Панель управления</h1>
+        <hr/>
+        <div class="col-md-3">
+            <partial name="_ManageNav"/>
         </div>
         <div class="col-md-9">
             @RenderBody()

@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500&display=swap');
+
 header {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Roboto Condensed', sans-serif;
   background: black;
   color: black;
 }
@@ -10,12 +12,6 @@ body {
   background: #0b0b0b;
 }
 
-.nav-link.active {
-  background-color: #0a53be; /* Новый цвет фона активной ссылки */
-}
-
-
-
 
 
 
@@ -23,7 +19,7 @@ body {
 
 /*для отступа от Workers*/
 .custom-me-10 {
-  margin-right: 10rem;
+  margin-right: 20rem;
 }
 
 /*для отступа у авторизации*/
@@ -81,5 +77,41 @@ body {
 
 .login-logout-card .card-body {
   padding: 10px 20px;
+}
+
+
+/*
+.header {
+  backdrop-filter: blur(25px);
+  background: rgba(0,0,0,.85);
+  border-bottom: 1px solid #282828;
+  color: #fff;
+  display: flex;
+  height: 80px;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+}
+*/
+
+.header-indent {
+  height: 80px;
+}
+
+.header-logo {
+  align-items: center;
+  display: flex;
+  flex: 1; {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
+  }
+}
+
+
+li {
+  list-style-type: none;
 }
 
