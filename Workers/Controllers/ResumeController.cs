@@ -46,7 +46,9 @@ public class ResumeController : Controller
         var response = await _resumeService.Create(model);
         if (response.StatusCode == Domain.Enum.StatusCode.Ok)
         {
-            return Json(new { description = response.Description });
+            TempData["message"] = "Резюме успешно создано и сохранено";
+            
+            return RedirectToAction("Index", "Home");
         }
         return StatusCode(StatusCodes.Status500InternalServerError);
     }
