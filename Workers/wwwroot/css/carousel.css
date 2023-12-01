@@ -8,9 +8,14 @@
     filter: brightness(0.6);
 }
 .a-img {
+    height: 300px;
+    object-fit: cover;
+    filter: brightness(0.89);
+}
+.b-img {
     height: 600px;
     object-fit: cover;
-    filter: brightness(0.8);
+    filter: brightness(0.89);
 }
 .header {
     background-image: URL(//www.gravatar.com/avatar/?s=100);
