@@ -26,6 +26,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
+
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
@@ -35,6 +36,18 @@
       },
       "publishAllPorts": true,
       "useSSL": true
+    },
+    "Watch App": {
+      "commandName": "Executable",
+      "executablePath": "dotnet",
+      "commandLineArgs": "watch run",
+      "workingDirectory": "$(ProjectDir)",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true
     }
   },
   "iisSettings": {

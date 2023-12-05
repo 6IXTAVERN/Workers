@@ -7,3 +7,36 @@
     object-fit: cover;
     filter: brightness(0.6);
 }
+.a-img {
+    height: 300px;
+    object-fit: cover;
+    filter: brightness(0.89);
+}
+.b-img {
+    height: 600px;
+    object-fit: cover;
+    filter: brightness(0.89);
+}
+.header {
+    background-image: URL(//www.gravatar.com/avatar/?s=100);
+    background-repeat: no-repeat;
+    text-align: center;
+    line-height: 100px;
+    font-size: 20px;
+}
+.main-text {
+    text-align: center;
+    line-height: 70px;
+    font-size: 50px;
+    font-family: 'Snell Roundhand', 'cursive';
+    font-style: oblique
+}
+.main-f {
+    text-align: center;
+    line-height: 70px;
+    font-size: 50px;
+    font-family: 'Snell Roundhand', 'cursive';
+    font-style: oblique
+    color: black;
+}
+
