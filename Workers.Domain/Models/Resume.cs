@@ -13,9 +13,13 @@ public class Resume
     public string MiddleName { get; set; }
     public Faculty Faculty { get; set; }
     //public List<string>? Tags { get; set; }
+    public byte[]? Image { get; set; }
     public DateTime DateCreated { get; set; }
-    
+    public string? Experience { get; set; }
+    public string? AdditionalLinks { get; set; }
+    public string? Mail { get; set; }
+    public string? Phone { get; set; }
     public string UserId { get; set; }
-
+    
     public User User { get; set; }
 }

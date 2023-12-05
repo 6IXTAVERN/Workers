@@ -12,22 +12,19 @@ public class ResumeRepository : IResumeRepository
         _db = db;
     }
 
-    public async Task Create(Resume? entity)
+    public async Task Create(Resume entity)
     {
-        var user = _db.Users.FirstOrDefault(u => u.Id == entity.UserId);
-        entity.User = user;
-        
         await _db.Resumes.AddAsync(entity);
         await _db.SaveChangesAsync();
     }
 
-    public async Task Delete(Resume? entity)
+    public async Task Delete(Resume entity)
     {
         _db.Resumes.Remove(entity);
         await _db.SaveChangesAsync();
     }
 
-    public async Task<Resume> Update(Resume? entity)
+    public async Task<Resume> Update(Resume entity)
     {
         _db.Resumes.Update(entity);
         await _db.SaveChangesAsync();
@@ -37,11 +34,16 @@ public class ResumeRepository : IResumeRepository
 
     public IQueryable<Resume> GetAll()
     {
-        return _db.Resumes;
+        return _db.Resumes!;
+    }
+    
+    public Resume GetResumeById(long resumeId)
+    {
+        return _db.Resumes.FirstOrDefault(r => r!.Id == resumeId)!;
     }
     
     public Resume GetResumeByUserId(string userId)
     {
-        return _db.Resumes.FirstOrDefault(r => r!.UserId == userId);
+        return _db.Resumes.FirstOrDefault(r => r!.UserId == userId)!;
     }
 }

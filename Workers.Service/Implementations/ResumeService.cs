@@ -13,89 +13,77 @@ namespace Workers.Services.Implementations;
 
 public class ResumeService : IResumeService
 {
-    private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly IResumeRepository _resumeRepository;
     
-    public ResumeService(IResumeRepository resumeRepository, IHttpContextAccessor httpContextAccessor)
+    public ResumeService(IResumeRepository resumeRepository)
     {
         _resumeRepository = resumeRepository;
-        _httpContextAccessor = httpContextAccessor;
     }
 
     public async Task<IBaseResponse<Resume>> Create(CreateResumeViewModel model)
     {
         try
         {
-            var userId = _httpContextAccessor.HttpContext.User
-                .FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            
-            
-            if (userId == null)
-            {
-                return new BaseResponse<Resume>()
-                {
-                    Description = "Пользователь не найден",
-                    StatusCode = StatusCode.UserNotFound
-                };
-            }
-
-            var resume = new Resume()
+            var resume = new Resume
             {
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 MiddleName = model.MiddleName,
                 DateCreated = DateTime.Now,
-                UserId = userId
+                Faculty = model.SelectedFaculty,
+                UserId = model.UserId
             };
      
             await _resumeRepository.Create(resume);
 
-            return new BaseResponse<Resume>()
-            {
-                Description = "Резюме создано",
-                StatusCode = StatusCode.Ok
-            };
+            return new BaseResponse<Resume>("Резюме создано", StatusCode.Ok);
         }
         catch (Exception ex)
         {
-            return new BaseResponse<Resume>()
-            {
-                Description = ex.Message,
-                StatusCode = StatusCode.InternalServerError
-            };
+            return new BaseResponse<Resume>(ex.Message, StatusCode.InternalServerError);
         }
     }
 
-    public async Task<IBaseResponse<bool>> Delete(long id)
+    public async Task<IBaseResponse<bool>> Delete(long resumeId)
     {
         try
         {
-            var resume = _resumeRepository.GetAll()
-                .FirstOrDefault(x => x.Id == id);
+            var resume = _resumeRepository.GetResumeById(resumeId);
 
             if (resume == null)
             {
-                return new BaseResponse<bool>()
-                {
-                    Description = "Резюме не найдено",
-                    StatusCode = StatusCode.OrderNotFound
-                };
+                return new BaseResponse<bool>("Резюме не найдено", StatusCode.OrderNotFound);
             }
 
             await _resumeRepository.Delete(resume);
-            return new BaseResponse<bool>()
-            {
-                Description = "Резюме удалено",
-                StatusCode = StatusCode.Ok
-            };
+            return new BaseResponse<bool>("Резюме удалено", StatusCode.Ok);
         }
         catch (Exception ex)
         {
-            return new BaseResponse<bool>()
+            return new BaseResponse<bool>(ex.Message, StatusCode.InternalServerError);
+        }
+    }
+    
+    public async Task<IBaseResponse<Resume>> Edit(long resumeId, CreateResumeViewModel model)
+    {
+        try
+        {
+            var resume = _resumeRepository.GetResumeById(resumeId);
+
+            if (resume == null)
             {
-                Description = ex.Message,
-                StatusCode = StatusCode.InternalServerError
-            };
+                return new BaseResponse<Resume>("Резюме не найдено", StatusCode.OrderNotFound);
+            }
+
+            // TODO Заимплементить изменение полей Resume для апдейта 
+            
+            
+            await _resumeRepository.Update(resume);
+            return new BaseResponse<Resume>("Резюме отредактировано", StatusCode.Ok);
+        }
+        catch (Exception ex)
+        {
+            return new BaseResponse<Resume>($"[Resume.Edit] : {ex.Message}", StatusCode.InternalServerError);
         }
     }
     
@@ -104,61 +92,27 @@ public class ResumeService : IResumeService
         try
         {
             var resumes = _resumeRepository.GetAll().ToList();
-            if (!resumes.Any())
-            {
-                return new BaseResponse<List<Resume>>
-                {
-                    Description = "Найдено 0 элементов",
-                    StatusCode = StatusCode.Ok
-                };
-            }
-                
-            return new BaseResponse<List<Resume>>
-            {
-                Data = resumes,
-                StatusCode = StatusCode.Ok
-            };
+            
+            return resumes.Count == 0 ? 
+                new BaseResponse<List<Resume>>("Найдено 0 элементов", StatusCode.Ok) : 
+                new BaseResponse<List<Resume>>("Получены существующие резюме", StatusCode.Ok, resumes);
         }
         catch (Exception ex)
         {
-            return new BaseResponse<List<Resume>>
-            {
-                Description = $"[GetResumes] : {ex.Message}",
-                StatusCode = StatusCode.InternalServerError
-            };
+            return new BaseResponse<List<Resume>>($"[Resume.GetResumes] : {ex.Message}", StatusCode.InternalServerError);
         }
     }
 
-    public IBaseResponse<Resume> GetActiveUserResume()
+    public IBaseResponse<Resume> GetResumeByUserId(string userId)
     {
-        var userId = _httpContextAccessor.HttpContext.User
-            .FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        
         try
         {
             var resume = _resumeRepository.GetResumeByUserId(userId);
-            if (resume == null)
-            {
-                return new BaseResponse<Resume>
-                {
-                    Description = "Резюме не найдено",
-                    StatusCode = StatusCode.Ok
-                };
-            }
-                
-            return new BaseResponse<Resume>
-            {
-                Data = resume,
-                StatusCode = StatusCode.Ok
-            };
+            return new BaseResponse<Resume>("Получено резюме пользователя", StatusCode.Ok, resume);
         }
         catch (Exception ex)
         {
-            return new BaseResponse<Resume>
-            {
-                Description = $"[GetResumeByUserId] : {ex.Message}",
-                StatusCode = StatusCode.InternalServerError
-            };
+            return new BaseResponse<Resume>($"[GetResumeByUserId] : {ex.Message}", StatusCode.InternalServerError);
         }
     }
 }
