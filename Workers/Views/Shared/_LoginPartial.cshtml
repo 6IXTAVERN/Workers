@@ -7,10 +7,10 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item dropdown col-6 col-lg-auto">
-        <a class="btn btn-warning d-inline mx-4" id="login" style="font-size: 20px; padding: 6px 35px" asp-controller="Resume" asp-action="Create">
-            Резюме
+        <a class="btn btn-warning d-inline mx-4" id="login" style="font-size: 20px; padding: 6px 35px" asp-controller="Resume" asp-action="Manage">
+            РЕЗЮМЕ
         </a>
-        @if (UserManager.GetUserAsync(User).Result.ProfilePicture != null)
+        @if (UserManager.GetUserAsync(User).Result?.ProfilePicture != null)
         {
             <a class="nav-link rounded-circle d-inline" width="40" height="40" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
                 <img style="width:40px;height:40px; object-fit:cover; border-radius:30px" src="data:image/*;base64,@(Convert.ToBase64String(UserManager.GetUserAsync(User).Result.ProfilePicture))">

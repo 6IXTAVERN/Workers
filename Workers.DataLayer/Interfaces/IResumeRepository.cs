@@ -4,5 +4,6 @@ namespace Workers.DataLayer.Interfaces;
 
 public interface IResumeRepository : IBaseRepository<Resume>
 {
-    public Resume GetResumeByUserId(string userId);
+    public Task<Resume> GetResumeById(long resumeId);
+    public Task<Resume> GetResumeByUserId(string userId);
 }
