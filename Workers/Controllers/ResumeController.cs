@@ -34,7 +34,7 @@ public class ResumeController : Controller
         var response = await _resumeService.GetResumeByUserId(activeUserId!);
         var resume = response.Data;
         var resumeModel = new CreateResumeViewModel();
-        
+        TempData["resumeId"] = "0";
         if (resume != null)
         {
             TempData["resumeId"] = resume.Id.ToString();
@@ -58,7 +58,7 @@ public class ResumeController : Controller
     {
         ModelState.Remove("Id");
         ModelState.Remove("UserId");
-        model.Id = long.Parse(TempData["resumeId"]!.ToString()!);
+        model.Id = long.Parse(TempData["resumeId"].ToString());
         model.UserId = TempData["userId"]?.ToString()!;
         if (ModelState.IsValid)
         {
