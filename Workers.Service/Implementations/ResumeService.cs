@@ -48,7 +48,7 @@ public class ResumeService : IResumeService
     {
         try
         {
-            var resume = _resumeRepository.GetResumeById(resumeId);
+            var resume = await _resumeRepository.GetResumeById(resumeId);
 
             if (resume == null)
             {
@@ -68,7 +68,7 @@ public class ResumeService : IResumeService
     {
         try
         {
-            var resume = _resumeRepository.GetResumeById(resumeId);
+            var resume = await _resumeRepository.GetResumeById(resumeId);
 
             if (resume == null)
             {
@@ -76,7 +76,6 @@ public class ResumeService : IResumeService
             }
 
             // TODO Заимплементить изменение полей Resume для апдейта 
-            
             
             await _resumeRepository.Update(resume);
             return new BaseResponse<Resume>("Резюме отредактировано", StatusCode.Ok);
@@ -103,11 +102,24 @@ public class ResumeService : IResumeService
         }
     }
 
-    public IBaseResponse<Resume> GetResumeByUserId(string userId)
+    public async Task<IBaseResponse<Resume>> GetResumeByUserId(string userId)
     {
         try
         {
-            var resume = _resumeRepository.GetResumeByUserId(userId);
+            var resume = await _resumeRepository.GetResumeByUserId(userId);
+            return new BaseResponse<Resume>("Получено резюме пользователя", StatusCode.Ok, resume);
+        }
+        catch (Exception ex)
+        {
+            return new BaseResponse<Resume>($"[GetResumeByUserId] : {ex.Message}", StatusCode.InternalServerError);
+        }
+    }
+    
+    public async Task<IBaseResponse<Resume>> GetResumeById(long resumeId)
+    {
+        try
+        {
+            var resume = await _resumeRepository.GetResumeById(resumeId);
             return new BaseResponse<Resume>("Получено резюме пользователя", StatusCode.Ok, resume);
         }
         catch (Exception ex)

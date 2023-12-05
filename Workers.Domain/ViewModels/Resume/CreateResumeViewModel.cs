@@ -6,6 +6,7 @@ namespace Workers.Domain.ViewModels.Resume;
 
 public class CreateResumeViewModel
 {
+    public long Id { get; set; }
     [Display(Name = "Имя")]
     [Required(ErrorMessage = "Укажите ваше имя")]
     //[MaxLength(20, ErrorMessage = "Имя должно иметь длину меньше 20 символов")]

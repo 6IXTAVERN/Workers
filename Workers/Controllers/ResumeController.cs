@@ -27,94 +27,62 @@ public class ResumeController : Controller
     }
     
     [HttpGet]
-    public IActionResult Create()
+    public async Task<IActionResult> Manage(long id)
     {
-        var userId = _httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        TempData["UserId"] = userId; // сохраняем в TempData
+        var activeUserId = _httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        TempData["userId"] = activeUserId;
+        var response = await _resumeService.GetResumeByUserId(activeUserId!);
+        var resume = response.Data;
+        var resumeModel = new CreateResumeViewModel();
         
-        if (_resumeService.GetResumeByUserId(userId).Data != null)
+        if (resume != null)
         {
-            return RedirectToAction("Edit");
+            TempData["resumeId"] = resume.Id.ToString();
+            resumeModel = new CreateResumeViewModel
+            {
+                Id = resume.Id,
+                FirstName = resume.FirstName,
+                LastName = resume.LastName,
+                MiddleName = resume.MiddleName,
+                SelectedFaculty = resume.Faculty,
+                Faculties = Enum.GetValues(typeof(Faculty)).Cast<Faculty>().ToList()
+            };
         }
-        
-        var resumeModel = new CreateResumeViewModel
-        {
-            Faculties = Enum.GetValues(typeof(Faculty)).Cast<Faculty>().ToList()
-        };
-        
+        resumeModel.Faculties = Enum.GetValues(typeof(Faculty)).Cast<Faculty>().ToList();
+            
         return View(resumeModel);
     }
     
     [HttpPost]
-    public async Task<IActionResult> Create(CreateResumeViewModel model)
+    public async Task<IActionResult> Manage(CreateResumeViewModel model)
     {
+        ModelState.Remove("Id");
         ModelState.Remove("UserId");
-        var userId = TempData["UserId"]?.ToString();
-        // если UserId есть в TempData, присваиваем его модели
-        if (!string.IsNullOrEmpty(userId))
-        {
-            model.UserId = userId;
-        }
-        
+        model.Id = long.Parse(TempData["resumeId"]!.ToString()!);
+        model.UserId = TempData["userId"]?.ToString()!;
         if (ModelState.IsValid)
         {
-            var response = await _resumeService.Create(model);
-            if (response.StatusCode == Domain.Enum.StatusCode.Ok)
+            if (model.Id == 0)
             {
-                TempData["message"] = "Резюме успешно создано и сохранено";
-                return RedirectToAction("Index", "Home");
+                var response = await _resumeService.Create(model);
+                if (response.StatusCode == Domain.Enum.StatusCode.Ok)
+                {
+                    TempData["message"] = "Резюме успешно создано и сохранено";
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                var response = await _resumeService.Edit(model.Id, model);
+                if (response.StatusCode == Domain.Enum.StatusCode.Ok)
+                {
+                    TempData["message"] = "Резюме успешно изменено";
+                    return RedirectToAction("Index", "Home");
+                }
             }
         }
 
         return StatusCode(StatusCodes.Status500InternalServerError);
-    }
-    
-    [HttpGet]
-    public IActionResult Edit(long id)
-    {
-        var userId = _httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        var resume = _resumeService.GetResumeByUserId(userId).Data;
-        
-        var resumeModel = new CreateResumeViewModel()
-        {
-            /*
-            FirstName = resume.FirstName,
-            LastName = resume.LastName,
-            MiddleName = resume.MiddleName,
-            SelectedFaculty = resume.Faculty,
-            */
-            Faculties = Enum.GetValues(typeof(Faculty)).Cast<Faculty>().ToList()
-        };
-
-        return View(resumeModel);
-    }
-    
-    [HttpPost]
-    public async Task<IActionResult> Edit(CreateResumeViewModel model)
-    {
-        if (!ModelState.IsValid)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError);
-        }
-        
-        var response = await _resumeService.Create(model);
-        if (response.StatusCode == Domain.Enum.StatusCode.Ok)
-        {
-            TempData["message"] = "Резюме успешно создано и сохранено";
-            return RedirectToAction("Index", "Home");
-        }
-        return StatusCode(StatusCodes.Status500InternalServerError);
-    }
-
-    public async Task<IActionResult> Delete(int id)
-    {
-        var response = await _resumeService.Delete(id);
-        if (response.StatusCode == Domain.Enum.StatusCode.Ok)
-        {
-            return RedirectToAction("GetResumes");
-        }
-
-        return View("Error", $"{response.Description}");
     }
 
     [HttpGet]

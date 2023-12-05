@@ -7,7 +7,7 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item dropdown col-6 col-lg-auto">
-        <a class="btn btn-warning d-inline mx-4" id="login" style="font-size: 20px; padding: 6px 35px" asp-controller="Resume" asp-action="Create">
+        <a class="btn btn-warning d-inline mx-4" id="login" style="font-size: 20px; padding: 6px 35px" asp-controller="Resume" asp-action="Manage">
             РЕЗЮМЕ
         </a>
         @if (UserManager.GetUserAsync(User).Result?.ProfilePicture != null)

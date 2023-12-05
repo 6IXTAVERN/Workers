@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Workers.DataLayer.Interfaces;
 using Workers.Domain.Models;
 
@@ -34,16 +35,16 @@ public class ResumeRepository : IResumeRepository
 
     public IQueryable<Resume> GetAll()
     {
-        return _db.Resumes!;
+        return _db.Resumes.AsQueryable()!;
     }
     
-    public Resume GetResumeById(long resumeId)
+    public async Task<Resume> GetResumeById(long resumeId)
     {
-        return _db.Resumes.FirstOrDefault(r => r!.Id == resumeId)!;
+        return (await _db.Resumes.FirstOrDefaultAsync(r => r!.Id == resumeId))!;
     }
     
-    public Resume GetResumeByUserId(string userId)
+    public async Task<Resume> GetResumeByUserId(string userId)
     {
-        return _db.Resumes.FirstOrDefault(r => r!.UserId == userId)!;
+        return (await _db.Resumes.FirstOrDefaultAsync(r => r!.UserId == userId))!;
     }
 }
