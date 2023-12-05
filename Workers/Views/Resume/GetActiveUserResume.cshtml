@@ -1,4 +1,5 @@
 @model Workers.Domain.ViewModels.Resume.ResumeViewModel
+@using Workers.Domain.Models;
 
 @{
     ViewBag.Title = "title";
@@ -8,3 +9,12 @@
 @Model.FirstName
 @Model.MiddleName
 @Model.LastName
+
+<div class="tag-list">
+    @foreach (Tag tag in Model.Tags)
+    {
+        <div class="tag" style="background-color: @tag.BackgroundColor; color: @tag.TextColor">
+            @tag.TagName
+        </div>
+    }
+</div>

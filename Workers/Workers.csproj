@@ -23,6 +23,7 @@
   <ItemGroup>
 	<DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0" />
     <ProjectReference Include="..\Workers.DataLayer\Workers.DataLayer.csproj" />
+    <ProjectReference Include="..\Workers.Domain\Workers.Domain.csproj" />
     <ProjectReference Include="..\Workers.Service\Workers.Service.csproj" />
   </ItemGroup>
 </Project>

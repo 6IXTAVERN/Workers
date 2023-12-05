@@ -12,7 +12,7 @@ public class Resume
     public string LastName { get; set; }
     public string MiddleName { get; set; }
     public Faculty Faculty { get; set; }
-    //public List<string>? Tags { get; set; }
+    public List<Tag> Tags { get; set; }
     public byte[]? Image { get; set; }
     public DateTime DateCreated { get; set; }
     public string? Experience { get; set; }
