@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="~/lib/bootstrap5.3.0/content/bootstrap.min.css" asp-append-version="true" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" asp-append-version="true" />
   <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+  <link rel="stylesheet" href="~/css/styleguide.css" asp-append-version="true" />
   <link rel="stylesheet" href="~/js/site.js" asp-append-version="true" />
   @*Интересная заметка об ошибке: если в пути не указать ~/ то toggle-collapsed будет работать только на странице Home*@
   <script src="~/lib/bootstrap5.3.0/scripts/bootstrap.bundle.min.js"></script>
@@ -27,7 +28,7 @@
     <div class="container" style="max-width: 1600px">
       
       <a class="navbar-brand custom-me-10" asp-controller="Home" asp-action="Index">
-        <img src="~/content/logo.svg" style="position: relative; top: -2px" alt="" width="40" height="40"></img>
+        <img src="~/content/logo.svg" style="position: relative; top: -2px" alt="" width="40" height="40">
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +45,9 @@
           </li>
           <li class="nav-item me-4">
             <a class="nav-link @(ViewContext.RouteData.Values["Action"]?.ToString() == "Categories" ? "active" : "")" style="font-size: 20px" asp-controller="Home" asp-action="Categories">Categories</a>
+          </li>
+          <li class="nav-item me-4">
+            <a class="nav-link @(ViewContext.RouteData.Values["Action"]?.ToString() == "Resumes" ? "active" : "")" style="font-size: 20px" asp-controller="Resume" asp-action="GetResumes">Студенты</a>
           </li>
         </ul>
         

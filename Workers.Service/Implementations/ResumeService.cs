@@ -8,6 +8,8 @@ using Workers.Domain.Models;
 using Workers.Domain.Response;
 using Workers.Domain.ViewModels.Resume;
 using Workers.Services.Interfaces;
+using Workers.Services.Implementations;
+using Workers.DataLayer.Repositories;
 
 namespace Workers.Services.Implementations;
 
@@ -86,7 +88,7 @@ public class ResumeService : IResumeService
         }
     }
     
-    public IBaseResponse<List<Resume>> GetResumes()
+    public async Task<IBaseResponse<List<Resume>>> GetResumes()
     {
         try
         {

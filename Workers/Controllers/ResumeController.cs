@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Workers.Domain.Enum;
 using Workers.Domain.ViewModels.Resume;
 using Workers.Services.Interfaces;
+using Workers.Controllers;
 
 namespace Workers.Controllers;
 
@@ -86,10 +87,10 @@ public class ResumeController : Controller
     }
 
     [HttpGet]
-    [Authorize]
-    public IActionResult GetResumes()
+    public async Task<IActionResult> GetResumes()
     {
-        var response = _resumeService.GetResumes();
+        var response = await _resumeService.GetResumes();
+        
         if (response.StatusCode == Domain.Enum.StatusCode.Ok)
         {
             return View(response.Data);

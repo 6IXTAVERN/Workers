@@ -125,3 +125,33 @@ li {
     padding: 10px;
     border-radius: 10px;
 }
+
+.students {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10% 10%;
+    position: relative;
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 5%;
+}
+
+.student {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5%;
+    padding: 4%;
+    position: relative;
+    background-color: var(--block);
+    border-radius: 10%;
+    color: var(--main-text);
+}
+
+    .student .avatar-container {
+        position: relative;
+        object-fit: cover;
+        background-color: black;
+        border-radius: 50%;
+    }

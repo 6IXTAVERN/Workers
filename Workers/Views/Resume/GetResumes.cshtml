@@ -1,14 +1,26 @@
+@using Microsoft.AspNetCore.Identity;
+@using Workers.Domain.Models;
 @model System.Collections.Generic.List<Workers.Domain.Models.Resume>
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Студенты";
 }
 
-@foreach (var name in Model)
-{
-    <tr>
-        <td>@name.FirstName</td>
-        <td>@name.MiddleName</td>
-        <td>@name.LastName</td>
-    </tr>
-}
+<div class="students">
+    @foreach (var resume in Model)
+    {
+        <div class="student">
+            <div class="avatar-container">
+                @if (resume.User.ProfilePicture != null)
+                {
+                    <img src="data:image/*;base64,@(Convert.ToBase64String(resume.User.ProfilePicture))">
+                }
+                else
+                {
+                    <img src="/content/not_authorized.svg"/>                    
+                }                
+            </div>
+        @resume.FirstName @resume.MiddleName @resume.LastName
+        </div>
+    }
+</div>
