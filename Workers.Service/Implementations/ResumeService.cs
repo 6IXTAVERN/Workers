@@ -77,8 +77,11 @@ public class ResumeService : IResumeService
                 return new BaseResponse<Resume>("Резюме не найдено", StatusCode.OrderNotFound);
             }
 
-            // TODO Заимплементить изменение полей Resume для апдейта 
-            
+            resume.FirstName = model.FirstName;
+            resume.LastName = model.LastName;
+            resume.MiddleName = model.MiddleName;
+            resume.Faculty = model.SelectedFaculty;
+
             await _resumeRepository.Update(resume);
             return new BaseResponse<Resume>("Резюме отредактировано", StatusCode.Ok);
         }
