@@ -2,31 +2,25 @@
 using System.Diagnostics;
 using Microsoft.Extensions.Logging;
 
-// Данный контроллер используется для показа пользователю страниц "Главная", "О нас" и "Наши факультеты"
-namespace Workers.Controllers
+// Данный контроллер используется для показа пользователю страниц "Главная", "О нас" и "Студенты"
+namespace Workers.Controllers;
+
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    private readonly ILogger<HomeController> _logger;
+
+    public HomeController(ILogger<HomeController> logger)
     {
-        private readonly ILogger<HomeController> _logger;
+        _logger = logger;
+    }
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+    public IActionResult Index()
+    {
+        return View();
+    }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult About()
-        {
-            return View();
-        }
-
-        public IActionResult Categories()
-        {
-            return View();
-        }
+    public IActionResult About()
+    {
+        return View();
     }
 }

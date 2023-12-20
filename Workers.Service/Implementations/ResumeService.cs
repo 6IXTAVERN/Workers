@@ -95,7 +95,7 @@ public class ResumeService : IResumeService
             var resumes = _resumeRepository.GetAll().ToList();
             
             return resumes.Count == 0 ? 
-                new BaseResponse<List<Resume>>("Найдено 0 элементов", StatusCode.Ok) : 
+                new BaseResponse<List<Resume>>("Найдено 0 элементов", StatusCode.Ok, resumes) : 
                 new BaseResponse<List<Resume>>("Получены существующие резюме", StatusCode.Ok, resumes);
         }
         catch (Exception ex)

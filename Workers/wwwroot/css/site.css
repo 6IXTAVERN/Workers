@@ -145,13 +145,14 @@ li {
     padding: 4%;
     position: relative;
     background-color: var(--block);
-    border-radius: 10%;
+    border-radius: 5%;
     color: var(--main-text);
+    margin-bottom: 10px;
 }
 
     .student .avatar-container {
         position: relative;
         object-fit: cover;
         background-color: black;
-        border-radius: 50%;
+        border-radius: 20%;
     }
