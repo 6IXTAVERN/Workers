@@ -35,7 +35,7 @@ public class ResumeRepository : IResumeRepository
 
     public IQueryable<Resume> GetAll()
     {
-        return _db.Resumes.AsQueryable()!;
+        return _db.Resumes.Include(r => r.User).AsQueryable()!;
     }
     
     public async Task<Resume> GetResumeById(long resumeId)

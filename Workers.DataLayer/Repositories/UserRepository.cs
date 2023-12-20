@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Workers.DataLayer.Interfaces;
 using Workers.Domain.Models;
 

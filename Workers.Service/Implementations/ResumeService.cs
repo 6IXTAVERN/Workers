@@ -8,6 +8,8 @@ using Workers.Domain.Models;
 using Workers.Domain.Response;
 using Workers.Domain.ViewModels.Resume;
 using Workers.Services.Interfaces;
+using Workers.Services.Implementations;
+using Workers.DataLayer.Repositories;
 
 namespace Workers.Services.Implementations;
 
@@ -75,8 +77,11 @@ public class ResumeService : IResumeService
                 return new BaseResponse<Resume>("Резюме не найдено", StatusCode.OrderNotFound);
             }
 
-            // TODO Заимплементить изменение полей Resume для апдейта 
-            
+            resume.FirstName = model.FirstName;
+            resume.LastName = model.LastName;
+            resume.MiddleName = model.MiddleName;
+            resume.Faculty = model.SelectedFaculty;
+
             await _resumeRepository.Update(resume);
             return new BaseResponse<Resume>("Резюме отредактировано", StatusCode.Ok);
         }
@@ -86,15 +91,15 @@ public class ResumeService : IResumeService
         }
     }
     
-    public IBaseResponse<List<Resume>> GetResumes()
+    public async Task<IBaseResponse<List<Resume>>> GetResumes()
     {
         try
         {
-            var resumes = _resumeRepository.GetAll().ToList();
+            var resumes = _resumeRepository.GetAll();
             
-            return resumes.Count == 0 ? 
-                new BaseResponse<List<Resume>>("Найдено 0 элементов", StatusCode.Ok) : 
-                new BaseResponse<List<Resume>>("Получены существующие резюме", StatusCode.Ok, resumes);
+            return resumes.Any() ?
+                new BaseResponse<List<Resume>>("Получены существующие резюме", StatusCode.Ok, resumes.ToList()) :
+                new BaseResponse<List<Resume>>("Найдено 0 элементов", StatusCode.Ok, resumes.ToList());
         }
         catch (Exception ex)
         {
