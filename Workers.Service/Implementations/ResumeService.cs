@@ -92,11 +92,11 @@ public class ResumeService : IResumeService
     {
         try
         {
-            var resumes = _resumeRepository.GetAll().ToList();
+            var resumes = _resumeRepository.GetAll();
             
-            return resumes.Count == 0 ? 
-                new BaseResponse<List<Resume>>("Найдено 0 элементов", StatusCode.Ok, resumes) : 
-                new BaseResponse<List<Resume>>("Получены существующие резюме", StatusCode.Ok, resumes);
+            return resumes.Any() ?
+                new BaseResponse<List<Resume>>("Получены существующие резюме", StatusCode.Ok, resumes.ToList()) :
+                new BaseResponse<List<Resume>>("Найдено 0 элементов", StatusCode.Ok, resumes.ToList());
         }
         catch (Exception ex)
         {
