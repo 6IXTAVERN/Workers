@@ -24,7 +24,6 @@ public class CreateResumeViewModel
     //[MaxLength(50, ErrorMessage = "Отчество должно иметь длину меньше 50 символов")]
     //[MinLength(2, ErrorMessage = "Отчество должно иметь длину больше 2 символов")]
     public string MiddleName { get; set; }
-
     [Required(ErrorMessage = "Укажите факультет")]
     public Faculty SelectedFaculty { get; set; }
     public List<Faculty>? Faculties { get; set; }

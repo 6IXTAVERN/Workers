@@ -68,7 +68,7 @@ public class ResumeController : Controller
                 var response = await _resumeService.Create(model);
                 if (response.StatusCode == Domain.Enum.StatusCode.Ok)
                 {
-                    TempData["message"] = "Резюме успешно создано и сохранено";
+                    TempData["message"] = "Резюме сохранено";
                     return RedirectToAction("Index", "Home");
                 }
             }
@@ -77,7 +77,7 @@ public class ResumeController : Controller
                 var response = await _resumeService.Edit(model.Id, model);
                 if (response.StatusCode == Domain.Enum.StatusCode.Ok)
                 {
-                    TempData["message"] = "Резюме успешно изменено";
+                    TempData["message"] = "Резюме сохранено";
                     return RedirectToAction("Index", "Home");
                 }
             }

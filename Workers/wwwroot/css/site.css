@@ -130,7 +130,7 @@ li {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    gap: 10% 10%;
+    gap: 2% 2%;
     position: relative;
     max-width: 90%;
     margin: 0 auto;
@@ -142,12 +142,12 @@ li {
     flex-direction: column;
     align-items: center;
     gap: 5%;
-    padding: 4%;
+    padding: 20px;
     position: relative;
-    background-color: var(--block);
+    background-color: dimgrey;
     border-radius: 5%;
-    color: var(--main-text);
-    margin-bottom: 10px;
+    color: white;
+    margin-bottom: 5%;
 }
 
     .student .avatar-container {
@@ -156,3 +156,10 @@ li {
         background-color: black;
         border-radius: 20%;
     }
+
+.f-img {
+    max-height: 300px;
+    max-width: 300px;
+    object-fit: cover;
+    filter: brightness(0.89);
+}

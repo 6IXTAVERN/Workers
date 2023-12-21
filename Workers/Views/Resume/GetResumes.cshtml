@@ -13,14 +13,15 @@
             <div class="avatar-container">
                 @if (resume.User.ProfilePicture != null)
                 {
-                    <img src="data:image/*;base64,@(Convert.ToBase64String(resume.User.ProfilePicture))">
+                    <img src="data:image/*;base64,@(Convert.ToBase64String(resume.User.ProfilePicture))" class="f-img w-100 a-img">
                 }
                 else
                 {
                     <img src="/content/not_authorized.svg"/>                    
                 }                
             </div>
-        @resume.FirstName @resume.MiddleName @resume.LastName
+            @resume.FirstName @resume.MiddleName @resume.LastName   
+            
         </div>
     }
 </div>

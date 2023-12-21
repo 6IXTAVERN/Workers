@@ -56,16 +56,16 @@ namespace Workers.Areas.Identity.Pages.Account.Manage
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Display(Name = "First Name")]
+            [Display(Name = "Имя")]
             public string FirstName { get; set; }
-            [Display(Name = "Last Name")]
+            [Display(Name = "Фамилия")]
             public string LastName { get; set; }
-            [Display(Name = "Username")]
+            [Display(Name = "Почта")]
             public string Username { get; set; }
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "Номер телефона")]
             public string PhoneNumber { get; set; }
-            [Display(Name = "Profile Picture")]
+            [Display(Name = "Фотография профиля")]
             public byte[] ProfilePicture { get; set; }
         }
 
